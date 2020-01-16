@@ -1,4 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
+import Typography from '@material-ui/core/Typography';
+
+const CautionTextBlock = styled.div`
+  margin: 1rem;
+`;
+
+const CautionText = ({ category }) => {
+  const cautions = fakeAlert[category];
+  return (
+    <CautionTextBlock>
+      {cautions.map((caution, idx) => (
+        <div key={idx}>
+          <Typography variant="h6">{caution.title}</Typography>
+          <Typography variant="body2">{caution.content}</Typography>
+        </div>
+      ))}
+    </CautionTextBlock>
+  );
+};
+
+export default CautionText;
 
 const fakeAlert = {
   미주지역: [
@@ -50,19 +72,3 @@ const fakeAlert = {
     },
   ],
 };
-
-const CautionText = ({ category }) => {
-  const cautions = fakeAlert[category];
-  return (
-    <div>
-      {cautions.map((caution, idx) => (
-        <div key={idx}>
-          <h4>{caution.title}</h4>
-          <p>{caution.content}</p>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default CautionText;
