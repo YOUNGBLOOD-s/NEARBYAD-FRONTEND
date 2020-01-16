@@ -1,16 +1,41 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
 
 const TravelRoute = ({ routes }) => {
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.root}>
       {routes.map(({ id, imageId, toFrom, description, transport }) => (
-        <div>
-          <h5>{id} 일차</h5>
-          {/* <img src={imageId} alt="" srcset=""/> */}
-          <h5>{toFrom}</h5>
-          <h5>{transport}</h5>
-          <p>{description}</p>
-        </div>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>
+              {id}일차, {toFrom}, ({transport})
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{description}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       ))}
     </div>
   );
