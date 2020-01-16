@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import BasicInformation from '../components/Detail/BasicInformation';
 import TravelRoute from '../components/Detail/TravelRoute';
 import CautionText from '../components/Detail/CautionText';
+import ReservationForm from '../components/Detail/ReservationForm';
+import KakaoChat from '../components/Detail/KakaoChat';
 
 const fakeCountries = [
   {
@@ -184,6 +186,8 @@ const DetailPage = ({ match }) => {
           <BasicInformation country={country} />
           <CautionText category={country.category} />
           <TravelRoute routes={country.routes} />
+          <ReservationForm />
+          <KakaoChat />
         </div>
       ) : (
         <div>loading..</div>
