@@ -1,7 +1,8 @@
 import React from 'react';
+import Carousel from '../components/common/Carousel';
 
 const AdPage = () => {
-  return <div>광고페이지</div>;
+  return <Carousel />;
 };
 
 export default AdPage;
