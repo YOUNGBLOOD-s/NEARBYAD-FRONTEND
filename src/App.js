@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import AdPage from './page/AdPage';
+import AdPage from './page/Main';
 import DetailPage from './page/DetailPage';
 
 const App = () => {
