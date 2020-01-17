@@ -9,7 +9,7 @@ const KakaoChatBlock = styled.div`
 const KakaoChat = () => {
   return (
     <KakaoChatBlock>
-      <Button color="" variant="contained">
+      <Button color="primary" variant="contained">
         카톡 챗봇 상담
       </Button>
     </KakaoChatBlock>

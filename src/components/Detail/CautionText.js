@@ -1,21 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
+import TitleBar from './TitleBar';
+import Card from '@material-ui/core/Card';
 
 const CautionTextBlock = styled.div`
   margin: 1rem;
+`;
+
+const TitleText = styled(Typography)`
+  margin-bottom: 0.5rem;
+`;
+
+const BodyText = styled(Typography)`
+  margin: 0.5rem;
 `;
 
 const CautionText = ({ category }) => {
   const cautions = fakeAlert[category];
   return (
     <CautionTextBlock>
-      {cautions.map((caution, idx) => (
-        <div key={idx}>
-          <Typography variant="h6">{caution.title}</Typography>
-          <Typography variant="body2">{caution.content}</Typography>
-        </div>
-      ))}
+      <Card>
+        <TitleBar text="주의사항" />
+        {cautions.map((caution, idx) => (
+          <div key={idx}>
+            <TitleText variant="h6">{caution.title}</TitleText>
+            <BodyText variant="body2">{caution.content}</BodyText>
+          </div>
+        ))}
+      </Card>
     </CautionTextBlock>
   );
 };

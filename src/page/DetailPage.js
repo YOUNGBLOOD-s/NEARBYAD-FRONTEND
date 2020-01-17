@@ -1,9 +1,50 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import BasicInformation from '../components/Detail/BasicInformation';
 import TravelRoute from '../components/Detail/TravelRoute';
 import CautionText from '../components/Detail/CautionText';
 import ReservationForm from '../components/Detail/ReservationForm';
 import KakaoChat from '../components/Detail/KakaoChat';
+import SimpleBackdrop from '../components/common/LoadingBackdrop';
+
+const DetailPageWrapper = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+const DetailPage = ({ match }) => {
+  const { id } = match.params;
+  const [country, setCountry] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const searchCountry = fakeCountries.find(cty => cty.id === parseInt(id)); // 나중에 api요청
+    if (!searchCountry) return;
+    setCountry(searchCountry);
+    setLoading(false);
+  }, [id]);
+
+  return (
+    <>
+      {!loading && country ? (
+        <div>
+          <BasicInformation country={country} />
+          <DetailPageWrapper>
+            <TravelRoute routes={country.routes} />
+            <CautionText category={country.category} />
+            <ReservationForm />
+            <KakaoChat />
+          </DetailPageWrapper>
+        </div>
+      ) : (
+        <SimpleBackdrop loading={loading} />
+      )}
+    </>
+  );
+};
+
+export default DetailPage;
 
 const fakeCountries = [
   {
@@ -168,32 +209,3 @@ const fakeCountries = [
     ],
   },
 ];
-
-const DetailPage = ({ match }) => {
-  const { id } = match.params;
-  const [country, setCountry] = useState(null);
-
-  useEffect(() => {
-    const searchCountry = fakeCountries.find(cty => cty.id === parseInt(id)); // 나중에 api요청
-    if (!searchCountry) return;
-    setCountry(searchCountry);
-  }, [id]);
-
-  return (
-    <div>
-      {country ? (
-        <div>
-          <BasicInformation country={country} />
-          <CautionText category={country.category} />
-          <TravelRoute routes={country.routes} />
-          <ReservationForm />
-          <KakaoChat />
-        </div>
-      ) : (
-        <div>loading..</div>
-      )}
-    </div>
-  );
-};
-
-export default DetailPage;
