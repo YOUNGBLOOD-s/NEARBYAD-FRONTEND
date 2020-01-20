@@ -12,7 +12,7 @@
 
 ## 페이지
 
-![광고판 페이지 UI](./prototype/광고판_상세페이지_UI.JPG)
+![광고판 페이지 UI](./prototype/광고판_상세페이지_UI.JPG){: width="100" height="100"}
 
 ### 광고 뷰
 
